@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LogiCore — Platform Overview</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root{
+    --navy:#0b2545; --navy2:#13315c; --teal:#12a4b5; --teal2:#0e7c8a; --ice:#e7f5f8; --ice2:#f3fafc;
+    --amber:#f2a03d; --green:#2a9d7f; --red:#d9534f; --ink:#1c2b3a; --mute:#5b6b7b; --line:#d6e3ea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-family:-apple-system,"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;font-size:11.5pt;line-height:1.5}
+  .page{width:210mm;height:297mm;padding:18mm 17mm 16mm;position:relative;overflow:hidden;page-break-after:always;break-after:page;background:#fff}
+  .page:last-child{page-break-after:auto;break-after:auto}
+  @media screen{
+    body{background:#dfe7ec;padding:24px 0}
+    .page{margin:0 auto 24px;box-shadow:0 4px 24px rgba(11,37,69,.18)}
+  }
+  .eyebrow{font-size:9pt;letter-spacing:.18em;text-transform:uppercase;color:var(--teal2);font-weight:700;margin-bottom:6px}
+  h1{font-size:27pt;line-height:1.1;color:var(--navy);letter-spacing:-.01em;margin-bottom:10px}
+  h2{font-size:15pt;color:var(--navy);margin:16px 0 6px}
+  h3{font-size:11.5pt;color:var(--navy);margin-bottom:3px}
+  p{margin-bottom:8px;color:#2c3e50}
+  .lead{font-size:12.5pt;color:#34495e;max-width:165mm}
+  .foot{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-size:8pt;color:var(--mute);border-top:1px solid var(--line);padding-top:5px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+  .card{background:var(--ice2);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+  .card p{font-size:10pt;margin:0;color:#3b4d5e;line-height:1.45}
+  .card .ic{width:30px;height:30px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:7px}
+  .tag{display:inline-block;font-size:7.5pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-bottom:6px}
+  .live{background:#d9f2ea;color:#1b7a60}.plan{background:#fdecd2;color:#a8660f}.ready{background:#dde7f7;color:#2b4c8c}
+  ul.tick{list-style:none}
+  ul.tick li{position:relative;padding-left:18px;font-size:10.5pt;margin-bottom:4px;color:#2c3e50}
+  ul.tick li:before{content:"";position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+  svg{display:block}
+  .fig{margin:10px 0;border:1px solid var(--line);border-radius:12px;background:#fff;padding:8px}
+  .cap{font-size:8.5pt;color:var(--mute);text-align:center;margin-top:3px}
+  .callout{background:var(--navy);color:#fff;border-radius:12px;padding:13px 16px;margin-top:10px}
+  .callout p{color:#dbe9f3;margin:0;font-size:10.5pt}
+  .callout b{color:#fff}
+  table{width:100%;border-collapse:collapse;font-size:10pt}
+  th{background:var(--navy);color:#fff;text-align:left;padding:6px 9px;font-weight:600}
+  td{padding:6px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:var(--ice2)}
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="page" style="padding:0;background:linear-gradient(160deg,#071a33 0%,#0b2545 55%,#0e4a63 100%);color:#fff">
+  <svg width="210mm" height="297mm" viewBox="0 0 794 1123" style="position:absolute;inset:0">
+    <defs>
+      <radialGradient id="glow" cx="75%" cy="30%" r="55%"><stop offset="0" stop-color="#12a4b5" stop-opacity=".45"/><stop offset="1" stop-color="#12a4b5" stop-opacity="0"/></radialGradient>
+    </defs>
+    <rect width="794" height="1123" fill="url(#glow)"/>
+    <!-- route network -->
+    <g fill="none" stroke="#5fd0de" stroke-opacity=".5" stroke-width="1.6" stroke-dasharray="3 6">
+      <path d="M90 760 C 220 640, 300 820, 420 700 S 640 620, 720 700"/>
+      <path d="M60 880 C 200 800, 330 930, 470 840 S 650 790, 740 860"/>
+      <path d="M130 660 C 240 560, 360 600, 480 540 S 650 500, 730 560"/>
+    </g>
+    <g fill="#12a4b5">
+      <circle cx="90" cy="760" r="7"/><circle cx="420" cy="700" r="9"/><circle cx="720" cy="700" r="7"/>
+      <circle cx="470" cy="840" r="7"/><circle cx="130" cy="660" r="6"/><circle cx="480" cy="540" r="8"/><circle cx="730" cy="560" r="6"/>
+    </g>
+    <g fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="2">
+      <circle cx="420" cy="700" r="17"/><circle cx="480" cy="540" r="15"/>
+    </g>
+    <!-- snowflake -->
+    <g transform="translate(640 250)" stroke="#9fe6ef" stroke-width="3" stroke-linecap="round" opacity=".85">
+      <line x1="0" y1="-60" x2="0" y2="60"/><line x1="-52" y1="-30" x2="52" y2="30"/><line x1="-52" y1="30" x2="52" y2="-30"/>
+      <polyline points="-12,-48 0,-36 12,-48"/><polyline points="-12,48 0,36 12,48"/>
+      <polyline points="-50,-14 -38,-18 -36,-32" transform="rotate(0)"/><polyline points="50,14 38,18 36,32"/>
+      <polyline points="-50,14 -38,18 -36,32"/><polyline points="50,-14 38,-18 36,-32"/>
+    </g>
+  </svg>
+  <div style="position:relative;padding:30mm 22mm 0">
+    <div style="font-size:10pt;letter-spacing:.3em;text-transform:uppercase;color:#7fdbe8;font-weight:700">Platform overview</div>
+    <div style="font-size:50pt;font-weight:800;letter-spacing:-.02em;margin-top:10px;line-height:1">LogiCore</div>
+    <div style="font-size:19pt;color:#cfe6ef;margin-top:14px;max-width:125mm;line-height:1.3">One connected platform to move, store and protect temperature-sensitive goods.</div>
+    <div style="width:60px;height:4px;background:var(--teal);margin:22px 0 16px;border-radius:2px"></div>
+    <div style="font-size:11pt;color:#a9c7d6;max-width:110mm">Warehouses &middot; Trucks &middot; Live tracking &middot; Cold-chain monitoring &middot; Courier network</div>
+  </div>
+  <div style="position:absolute;left:22mm;bottom:20mm;font-size:9.5pt;color:#8fb0c2">
+    Product overview for prospective partners<br>October 2026 &middot; Confidential
+  </div>
+</section>
+
+<!-- ============ 1. WHAT & WHY ============ -->
+<section class="page">
+  <div class="eyebrow">01 &middot; The idea</div>
+  <h1>Cold-chain goods are fragile.<br>The paperwork around them shouldn't be.</h1>
+  <p class="lead">Medicines, vaccines, dairy and fresh produce must stay inside a temperature range from the factory shelf to the customer's door. Today that journey is managed with phone calls, paper slips and spreadsheets &mdash; so when a box goes missing or a truck runs warm, nobody knows <i>where</i> or <i>when</i> it happened.</p>
+  <p class="lead" style="margin-top:2px">LogiCore replaces that with a single system: every box is scanned at every hand-off, every truck is tracked, and every step is recorded.</p>
+
+  <div class="fig" style="margin-top:14px">
+  <svg viewBox="0 0 700 175" width="100%">
+    <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#8aa4b5"/></marker></defs>
+    <text x="10" y="18" font-size="12" font-weight="700" fill="#d9534f">WITHOUT A SYSTEM</text>
+    <g font-size="10.5" fill="#5b6b7b">
+      <rect x="10" y="28" width="120" height="40" rx="8" fill="#fbe9e8" stroke="#efc3c1"/><text x="70" y="52" text-anchor="middle">Paper slips</text>
+      <rect x="150" y="28" width="120" height="40" rx="8" fill="#fbe9e8" stroke="#efc3c1"/><text x="210" y="52" text-anchor="middle">Phone calls</text>
+      <rect x="290" y="28" width="120" height="40" rx="8" fill="#fbe9e8" stroke="#efc3c1"/><text x="350" y="52" text-anchor="middle">Spreadsheets</text>
+      <rect x="430" y="28" width="120" height="40" rx="8" fill="#fbe9e8" stroke="#efc3c1"/><text x="490" y="52" text-anchor="middle">"Where is it?"</text>
+      <rect x="570" y="28" width="120" height="40" rx="8" fill="#fbe9e8" stroke="#efc3c1"/><text x="630" y="52" text-anchor="middle">Spoiled stock</text>
+    </g>
+    <text x="10" y="104" font-size="12" font-weight="700" fill="#1b7a60">WITH LOGICORE</text>
+    <g font-size="10.5" fill="#0b2545">
+      <rect x="10" y="114" width="120" height="44" rx="8" fill="#d9f2ea" stroke="#a9ddcc"/><text x="70" y="141" text-anchor="middle">Scan every box</text>
+      <rect x="150" y="114" width="120" height="44" rx="8" fill="#d9f2ea" stroke="#a9ddcc"/><text x="210" y="141" text-anchor="middle">Live truck map</text>
+      <rect x="290" y="114" width="120" height="44" rx="8" fill="#d9f2ea" stroke="#a9ddcc"/><text x="350" y="141" text-anchor="middle">Temperature log</text>
+      <rect x="430" y="114" width="120" height="44" rx="8" fill="#d9f2ea" stroke="#a9ddcc"/><text x="490" y="141" text-anchor="middle">Instant alerts</text>
+      <rect x="570" y="114" width="120" height="44" rx="8" fill="#d9f2ea" stroke="#a9ddcc"/><text x="630" y="141" text-anchor="middle">Proof of delivery</text>
+    </g>
+  </svg>
+  <div class="cap">From manual coordination to a recorded, traceable journey</div>
+  </div>
+
+  <h2>What we are building, in one picture</h2>
+  <div class="grid3">
+    <div class="card"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 9l9-6 9 6v11H3z"/><path d="M9 20v-7h6v7"/></svg></div><h3>Know what you hold</h3><p>Warehouses with scanned boxes and pallets, so stock and location are always exact.</p></div>
+    <div class="card"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="1" y="7" width="14" height="9"/><path d="M15 10h4l4 3v3h-8"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></div><h3>Know where it is</h3><p>Trucks and drivers tracked live on a map, with every trip and stop recorded.</p></div>
+    <div class="card"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14 14.8V4a2 2 0 0 0-4 0v10.8a4 4 0 1 0 4 0z"/></svg></div><h3>Know it stayed cold</h3><p>Temperature measured inside the truck for the whole journey, with alerts when it drifts.</p></div>
+  </div>
+
+  <div class="callout"><p><b>The core promise:</b> a complete, tamper-evident record of every box &mdash; who handled it, which truck carried it, where it was, and what temperature it travelled at.</p></div>
+  <div class="foot"><span>LogiCore &middot; Platform overview</span><span>2</span></div>
+</section>
+
+<!-- ============ 2. PLATFORM ============ -->
+<section class="page">
+  <div class="eyebrow">02 &middot; The platform</div>
+  <h1>One foundation, switchable systems</h1>
+  <p class="lead">LogiCore is built as a shared core with separate <b>systems</b> on top. Each customer organisation gets only the systems it needs; they switch on or off per organisation and work together automatically when combined.</p>
+
+  <div class="fig">
+  <svg viewBox="0 0 700 420" width="100%">
+    <!-- apps -->
+    <text x="350" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#0e7c8a" letter-spacing="2">WHO USES IT</text>
+    <g font-size="11" text-anchor="middle">
+      <rect x="40" y="30" width="190" height="52" rx="26" fill="#e7f5f8" stroke="#12a4b5"/><text x="135" y="52" font-weight="700" fill="#0b2545">Web console</text><text x="135" y="68" fill="#5b6b7b" font-size="9.5">admins · managers · dispatchers</text>
+      <rect x="255" y="30" width="190" height="52" rx="26" fill="#e7f5f8" stroke="#12a4b5"/><text x="350" y="52" font-weight="700" fill="#0b2545">Mobile app</text><text x="350" y="68" fill="#5b6b7b" font-size="9.5">warehouse workers · drivers</text>
+      <rect x="470" y="30" width="190" height="52" rx="26" fill="#e7f5f8" stroke="#12a4b5"/><text x="565" y="52" font-weight="700" fill="#0b2545">Truck-mounted phone</text><text x="565" y="68" fill="#5b6b7b" font-size="9.5">GPS + temperature, always on</text>
+    </g>
+    <g stroke="#8aa4b5" stroke-width="1.5" fill="none"><path d="M135 82V112M350 82V112M565 82V112"/></g>
+
+    <!-- systems -->
+    <text x="350" y="108" text-anchor="middle" font-size="11" font-weight="700" fill="#0e7c8a" letter-spacing="2">SYSTEMS (SWITCHED ON PER CUSTOMER)</text>
+    <g font-size="12" text-anchor="middle">
+      <rect x="20" y="120" width="124" height="112" rx="12" fill="#0b2545"/>
+      <text x="82" y="146" fill="#7fdbe8" font-weight="700" font-size="10" letter-spacing="1.5">LIVE</text>
+      <text x="82" y="170" fill="#fff" font-weight="800" font-size="19">WMS</text><text x="82" y="188" fill="#cfe6ef" font-size="10">Warehouse</text><text x="82" y="204" fill="#9bb7c7" font-size="9">boxes · pallets · scans</text>
+
+      <rect x="156" y="120" width="124" height="112" rx="12" fill="#0b2545"/>
+      <text x="218" y="146" fill="#7fdbe8" font-weight="700" font-size="10" letter-spacing="1.5">LIVE</text>
+      <text x="218" y="170" fill="#fff" font-weight="800" font-size="19">TMS</text><text x="218" y="188" fill="#cfe6ef" font-size="10">Transport</text><text x="218" y="204" fill="#9bb7c7" font-size="9">trucks · trips · tracking</text>
+
+      <rect x="292" y="120" width="124" height="112" rx="12" fill="#fff" stroke="#f2a03d" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="354" y="146" fill="#c27a1c" font-weight="700" font-size="10" letter-spacing="1.5">NEXT</text>
+      <text x="354" y="170" fill="#0b2545" font-weight="800" font-size="19">CNS</text><text x="354" y="188" fill="#34495e" font-size="10">Courier Network</text><text x="354" y="204" fill="#5b6b7b" font-size="9">hubs · pickup · delivery</text>
+
+      <rect x="428" y="120" width="124" height="112" rx="12" fill="#e9eef7" stroke="#b8c7e0"/>
+      <text x="490" y="146" fill="#2b4c8c" font-weight="700" font-size="10" letter-spacing="1.5">BUILT</text>
+      <text x="490" y="170" fill="#0b2545" font-weight="800" font-size="19">OMS</text><text x="490" y="188" fill="#34495e" font-size="10">Orders</text><text x="490" y="204" fill="#5b6b7b" font-size="9">orders · pricing · approvals</text>
+
+      <rect x="564" y="120" width="116" height="112" rx="12" fill="#e9eef7" stroke="#b8c7e0"/>
+      <text x="622" y="146" fill="#2b4c8c" font-weight="700" font-size="10" letter-spacing="1.5">BUILT</text>
+      <text x="622" y="170" fill="#0b2545" font-weight="800" font-size="19">ERP</text><text x="622" y="188" fill="#34495e" font-size="10">Finance</text><text x="622" y="204" fill="#5b6b7b" font-size="9">invoices · billing</text>
+    </g>
+    <!-- links between WMS and TMS -->
+    <path d="M144 176H156" stroke="#12a4b5" stroke-width="4"/>
+    <path d="M280 176H292" stroke="#f2a03d" stroke-width="4" stroke-dasharray="3 3"/>
+    <g stroke="#8aa4b5" stroke-width="1.5" fill="none"><path d="M82 232V282M218 232V282M354 232V282M490 232V282M622 232V282"/></g>
+
+    <!-- core -->
+    <rect x="20" y="282" width="660" height="124" rx="14" fill="#12a4b5"/>
+    <text x="350" y="308" text-anchor="middle" fill="#fff" font-weight="800" font-size="14" letter-spacing="3">CORE · ALWAYS ON</text>
+    <g font-size="10.5" fill="#06323a" text-anchor="middle">
+      <rect x="36" y="322" width="120" height="30" rx="15" fill="#d3f1f5"/><text x="96" y="341">Organisations</text>
+      <rect x="166" y="322" width="120" height="30" rx="15" fill="#d3f1f5"/><text x="226" y="341">Users &amp; roles</text>
+      <rect x="296" y="322" width="120" height="30" rx="15" fill="#d3f1f5"/><text x="356" y="341">Approvals</text>
+      <rect x="426" y="322" width="120" height="30" rx="15" fill="#d3f1f5"/><text x="486" y="341">Locations</text>
+      <rect x="556" y="322" width="112" height="30" rx="15" fill="#d3f1f5"/><text x="612" y="341">Audit trail</text>
+      <rect x="36" y="362" width="155" height="30" rx="15" fill="#d3f1f5"/><text x="113" y="381">Box &amp; pallet registry</text>
+      <rect x="201" y="362" width="155" height="30" rx="15" fill="#d3f1f5"/><text x="278" y="381">Live data pipeline</text>
+      <rect x="366" y="362" width="155" height="30" rx="15" fill="#d3f1f5"/><text x="443" y="381">Alerts &amp; notifications</text>
+      <rect x="531" y="362" width="137" height="30" rx="15" fill="#d3f1f5"/><text x="600" y="381">Security</text>
+    </g>
+  </svg>
+  <div class="cap">LogiCore architecture &mdash; apps on top, switchable systems in the middle, shared core underneath</div>
+  </div>
+
+  <h2>Why this shape matters</h2>
+  <div class="grid2">
+    <ul class="tick">
+      <li><b>Start small, grow naturally.</b> A customer can begin with trucks only, add warehouses later &mdash; no migration.</li>
+      <li><b>Systems cooperate.</b> With WMS and TMS both on, a warehouse dispatch becomes a truck trip automatically.</li>
+    </ul>
+    <ul class="tick">
+      <li><b>Every organisation is isolated.</b> One customer can never see another's data.</li>
+      <li><b>One login, one record.</b> People, locations and boxes are defined once and shared by every system.</li>
+    </ul>
+  </div>
+  <div class="foot"><span>LogiCore &middot; Platform overview</span><span>3</span></div>
+</section>
+
+<!-- ============ 3. PEOPLE & APPS ============ -->
+<section class="page">
+  <div class="eyebrow">03 &middot; People &amp; apps</div>
+  <h1>Built around the people who do the work</h1>
+  <p class="lead">Each role sees only what it needs. Office staff manage and monitor from the web console; people on the floor and on the road use a simple, large-button mobile app.</p>
+
+  <div class="fig">
+  <svg viewBox="0 0 700 300" width="100%">
+    <g text-anchor="middle" font-size="11">
+      <!-- admin -->
+      <circle cx="350" cy="40" r="22" fill="#0b2545"/><text x="350" y="45" fill="#fff" font-weight="700" font-size="12">A</text>
+      <text x="350" y="78" font-weight="700" fill="#0b2545">Organisation Admin</text><text x="350" y="92" fill="#5b6b7b" font-size="9.5">sets up warehouses, trucks, people</text>
+      <path d="M350 98V118M350 118H175M350 118H525M350 118V132" stroke="#8aa4b5" stroke-width="1.5" fill="none"/>
+      <!-- WM -->
+      <circle cx="175" cy="152" r="22" fill="#12a4b5"/><text x="175" y="157" fill="#fff" font-weight="700" font-size="12">WM</text>
+      <text x="175" y="190" font-weight="700" fill="#0b2545">Warehouse Manager</text><text x="175" y="204" fill="#5b6b7b" font-size="9.5">runs one or more warehouses</text>
+      <!-- Dispatcher -->
+      <circle cx="525" cy="152" r="22" fill="#12a4b5"/><text x="525" y="157" fill="#fff" font-weight="700" font-size="12">D</text>
+      <text x="525" y="190" font-weight="700" fill="#0b2545">Dispatcher</text><text x="525" y="204" fill="#5b6b7b" font-size="9.5">plans trips, assigns trucks</text>
+      <!-- Monitor -->
+      <circle cx="350" cy="152" r="22" fill="#12a4b5"/><text x="350" y="157" fill="#fff" font-weight="700" font-size="12">SA</text>
+      <text x="350" y="190" font-weight="700" fill="#0b2545">Platform Operator</text><text x="350" y="204" fill="#5b6b7b" font-size="9.5">creates customers, switches systems</text>
+      <path d="M175 210V232M525 210V232" stroke="#8aa4b5" stroke-width="1.5" fill="none"/>
+      <!-- workers -->
+      <circle cx="175" cy="254" r="20" fill="#f2a03d"/><text x="175" y="259" fill="#fff" font-weight="700" font-size="11">W</text>
+      <text x="175" y="288" font-weight="700" fill="#0b2545">Warehouse Workers</text>
+      <circle cx="525" cy="254" r="20" fill="#f2a03d"/><text x="525" y="259" fill="#fff" font-weight="700" font-size="11">Dr</text>
+      <text x="525" y="288" font-weight="700" fill="#0b2545">Drivers</text>
+    </g>
+  </svg>
+  <div class="cap">Roles and reporting lines &mdash; managers build their own teams</div>
+  </div>
+
+  <div class="grid2" style="margin-top:12px;align-items:start">
+    <div>
+      <h3>Controlled onboarding</h3>
+      <p style="font-size:10.5pt">Adding people is deliberate. An admin adds anyone directly; a manager's request for a team member goes to the admin for approval first. Accounts are never deleted &mdash; only suspended &mdash; so history always stays intact.</p>
+      <h3 style="margin-top:8px">Simple sign-in</h3>
+      <p style="font-size:10.5pt">Staff sign in with a plain user ID (e.g. <i>firstname.lastname</i>) &mdash; no email address needed, which suits shop-floor and driver users.</p>
+      <h3 style="margin-top:8px">Built for the floor</h3>
+      <p style="font-size:10.5pt">Large, high-contrast buttons, camera or hardware scanning, and automatic recovery when the network drops.</p>
+    </div>
+    <!-- phone mockup -->
+    <svg viewBox="0 0 250 330" width="100%" style="max-width:225px;margin:0 auto">
+      <rect x="45" y="5" width="160" height="320" rx="24" fill="#0b2545"/>
+      <rect x="53" y="17" width="144" height="296" rx="16" fill="#f7f2f3"/>
+      <rect x="53" y="17" width="144" height="40" rx="16" fill="#3f51b5"/><rect x="53" y="40" width="144" height="17" fill="#3f51b5"/>
+      <text x="63" y="42" fill="#fff" font-size="10" font-weight="700">PUNE WAREHOUSE</text>
+      <g font-size="8.5" fill="#1c2b3a" font-weight="700">
+        <rect x="62" y="66" width="126" height="31" rx="7" fill="#fff" stroke="#d6dbe8"/><rect x="68" y="73" width="17" height="17" rx="4" fill="#3f51b5"/><text x="94" y="85">INBOUND</text>
+        <rect x="62" y="103" width="126" height="31" rx="7" fill="#fff" stroke="#d6dbe8"/><rect x="68" y="110" width="17" height="17" rx="4" fill="#3f51b5"/><text x="94" y="122">OUTBOUND</text>
+        <rect x="62" y="140" width="126" height="31" rx="7" fill="#fff" stroke="#d6dbe8"/><rect x="68" y="147" width="17" height="17" rx="4" fill="#3f51b5"/><text x="94" y="159">BOX PUTAWAY</text>
+        <rect x="62" y="177" width="126" height="31" rx="7" fill="#fff" stroke="#d6dbe8"/><rect x="68" y="184" width="17" height="17" rx="4" fill="#3f51b5"/><text x="94" y="196">CONVERT TO PALLET</text>
+        <rect x="62" y="214" width="126" height="31" rx="7" fill="#fff" stroke="#d6dbe8"/><rect x="68" y="221" width="17" height="17" rx="4" fill="#3f51b5"/><text x="94" y="233">PALLET PUTAWAY</text>
+        <rect x="62" y="251" width="126" height="31" rx="7" fill="#fff" stroke="#d6dbe8"/><rect x="68" y="258" width="17" height="17" rx="4" fill="#3f51b5"/><text x="94" y="270">CONFIRM AND STAGE</text>
+      </g>
+      <rect x="105" y="298" width="40" height="4" rx="2" fill="#c9cdd8"/>
+    </svg>
+  </div>
+  <div class="cap" style="margin-top:-4px">Warehouse worker home screen &mdash; one tap per activity</div>
+  <div class="foot"><span>LogiCore &middot; Platform overview</span><span>4</span></div>
+</section>
+
+<!-- ============ 4. WMS ============ -->
+<section class="page">
+  <div class="eyebrow">04 &middot; WMS &mdash; Warehouse</div>
+  <h1>Every box accounted for, from dock to shelf</h1>
+  <span class="tag live">Live</span>
+  <p class="lead">The warehouse system tracks goods as physical units &mdash; individual boxes grouped onto pallets &mdash; using barcode scans rather than manual entry. Workers scan; the system does the book-keeping.</p>
+
+  <div class="fig">
+  <svg viewBox="0 0 700 190" width="100%">
+    <defs><marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#12a4b5"/></marker></defs>
+    <g font-size="11" text-anchor="middle">
+      <g transform="translate(10 25)">
+        <rect width="110" height="110" rx="12" fill="#e7f5f8" stroke="#12a4b5"/>
+        <g transform="translate(35 14)" fill="#f2a03d"><rect width="40" height="30" rx="3"/><rect x="0" y="0" width="40" height="8" fill="#d9871f"/></g>
+        <text x="55" y="75" font-weight="700" fill="#0b2545">1 · Receive</text><text x="55" y="91" fill="#5b6b7b" font-size="9.5">scan incoming boxes</text>
+      </g>
+      <path d="M126 80H150" stroke="#12a4b5" stroke-width="2" marker-end="url(#a2)"/>
+      <g transform="translate(155 25)">
+        <rect width="110" height="110" rx="12" fill="#e7f5f8" stroke="#12a4b5"/>
+        <g transform="translate(33 12)"><rect y="18" width="44" height="6" fill="#0b2545"/><rect y="0" width="44" height="6" fill="#0b2545"/><rect x="2" width="5" height="24" fill="#0b2545"/><rect x="37" width="5" height="24" fill="#0b2545"/><rect x="10" y="6" width="10" height="12" fill="#f2a03d"/><rect x="23" y="6" width="10" height="12" fill="#f2a03d"/></g>
+        <text x="55" y="75" font-weight="700" fill="#0b2545">2 · Put away</text><text x="55" y="91" fill="#5b6b7b" font-size="9.5">box → shelf column</text>
+      </g>
+      <path d="M271 80H295" stroke="#12a4b5" stroke-width="2" marker-end="url(#a2)"/>
+      <g transform="translate(300 25)">
+        <rect width="110" height="110" rx="12" fill="#e7f5f8" stroke="#12a4b5"/>
+        <g transform="translate(30 10)"><rect y="24" width="50" height="7" rx="1" fill="#0b2545"/><rect x="4" y="10" width="13" height="14" fill="#f2a03d"/><rect x="19" y="10" width="13" height="14" fill="#f2a03d"/><rect x="34" y="10" width="13" height="14" fill="#f2a03d"/><rect x="11" y="-3" width="13" height="13" fill="#f2a03d"/><rect x="26" y="-3" width="13" height="13" fill="#f2a03d"/></g>
+        <text x="55" y="75" font-weight="700" fill="#0b2545">3 · Palletise</text><text x="55" y="91" fill="#5b6b7b" font-size="9.5">boxes → pallet</text>
+      </g>
+      <path d="M416 80H440" stroke="#12a4b5" stroke-width="2" marker-end="url(#a2)"/>
+      <g transform="translate(445 25)">
+        <rect width="110" height="110" rx="12" fill="#e7f5f8" stroke="#12a4b5"/>
+        <g transform="translate(28 14)" fill="none" stroke="#0b2545" stroke-width="2"><rect x="0" y="0" width="54" height="26" rx="3"/><path d="M6 8h10M6 14h18M6 20h12"/></g>
+        <text x="55" y="75" font-weight="700" fill="#0b2545">4 · Stage</text><text x="55" y="91" fill="#5b6b7b" font-size="9.5">confirm &amp; hold at dock</text>
+      </g>
+      <path d="M561 80H585" stroke="#12a4b5" stroke-width="2" marker-end="url(#a2)"/>
+      <g transform="translate(590 25)">
+        <rect width="100" height="110" rx="12" fill="#0b2545"/>
+        <g transform="translate(24 14)" fill="none" stroke="#7fdbe8" stroke-width="2.2"><rect x="0" y="6" width="32" height="20"/><path d="M32 12h12l8 8v6H32"/><circle cx="10" cy="30" r="4"/><circle cx="42" cy="30" r="4"/></g>
+        <text x="50" y="75" font-weight="700" fill="#fff">5 · Dispatch</text><text x="50" y="91" fill="#9bb7c7" font-size="9.5">scan onto truck</text>
+      </g>
+    </g>
+    <text x="350" y="168" text-anchor="middle" font-size="10" fill="#5b6b7b">Each step is a barcode scan that updates the record instantly &mdash; no re-typing, no paper</text>
+  </svg>
+  <div class="cap">Inside the warehouse &mdash; the lifecycle of a box</div>
+  </div>
+
+  <div class="grid2" style="margin-top:6px">
+    <div>
+      <h2 style="margin-top:6px">What it does</h2>
+      <ul class="tick">
+        <li><b>Seven scan activities</b> on the mobile app: Inbound, Outbound, Box Putaway, Convert to Pallet, Pallet Putaway, Pallet Consolidation, Confirm &amp; Stage.</li>
+        <li><b>Format checks on every scan</b> &mdash; a wrong or unknown barcode is caught immediately, with an accept/decline choice.</li>
+        <li><b>Resumable sessions</b> &mdash; if a worker's phone dies mid-task, they pick up exactly where they left off.</li>
+        <li><b>Duplicate protection</b> &mdash; scanning the same box twice is flagged instantly.</li>
+      </ul>
+    </div>
+    <div>
+      <h2 style="margin-top:6px">Teams &amp; control</h2>
+      <ul class="tick">
+        <li>Several managers per warehouse, each with their own team of workers.</li>
+        <li><b>Box enquiry</b> &mdash; scan any box to see its full journey and current status.</li>
+        <li>Missing or mismatched boxes are raised as <b>exceptions</b> for a manager to resolve, not silently lost.</li>
+        <li>Warehouses defined with standard state / district / pincode data for clean reporting.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>LogiCore &middot; Platform overview</span><span>5</span></div>
+</section>
+
+<!-- ============ 5. TMS ============ -->
+<section class="page">
+  <div class="eyebrow">05 &middot; TMS &mdash; Transport</div>
+  <h1>Every truck visible, every trip recorded</h1>
+  <span class="tag live">Live</span>
+  <p class="lead">The transport system manages the fleet, the drivers, and the trips between locations &mdash; and watches the vehicles in real time. No driver needs to press "start" or "stop": tracking is automatic.</p>
+
+  <div class="fig">
+  <svg viewBox="0 0 700 250" width="100%">
+    <rect width="700" height="250" rx="8" fill="#eaf3f0"/>
+    <!-- map roads -->
+    <g fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"><path d="M0 190C120 170 180 90 300 100S500 190 700 120"/><path d="M120 250C140 180 230 160 260 0"/><path d="M430 250C440 200 470 150 520 0"/></g>
+    <g fill="none" stroke="#d3e0dc" stroke-width="1.5"><path d="M0 60H700M0 150H700M200 0V250M350 0V250M560 0V250"/></g>
+    <rect x="60" y="30" width="70" height="40" rx="6" fill="#cfe6d6"/><rect x="590" y="170" width="80" height="50" rx="6" fill="#cfe6d6"/><rect x="300" y="190" width="60" height="40" rx="6" fill="#bfd9e6"/>
+    <!-- route -->
+    <path d="M70 185C130 170 190 100 290 100S470 170 630 130" fill="none" stroke="#12a4b5" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 0"/>
+    <path d="M70 185C130 170 190 100 290 100" fill="none" stroke="#0b2545" stroke-width="5" stroke-linecap="round"/>
+    <!-- points -->
+    <g><circle cx="70" cy="185" r="11" fill="#0b2545"/><text x="70" y="189" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">A</text></g>
+    <g><circle cx="630" cy="130" r="11" fill="#12a4b5"/><text x="630" y="134" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">B</text></g>
+    <!-- truck -->
+    <g transform="translate(262 78)"><circle cx="28" cy="22" r="28" fill="#f2a03d" fill-opacity=".25"/>
+      <rect x="10" y="10" width="28" height="18" rx="3" fill="#0b2545"/><path d="M38 14h9l6 7v7H38z" fill="#0b2545"/><circle cx="19" cy="30" r="4" fill="#f2a03d"/><circle cx="44" cy="30" r="4" fill="#f2a03d"/></g>
+    <!-- info card -->
+    <g transform="translate(400 18)"><rect width="285" height="76" rx="10" fill="#fff" stroke="#c9dbe3"/>
+      <text x="14" y="22" font-size="11" font-weight="700" fill="#0b2545">MH12 AB 4521 · In transit</text>
+      <text x="14" y="40" font-size="10" fill="#5b6b7b">Pune → Mumbai hub · 62 km done</text>
+      <rect x="14" y="50" width="257" height="6" rx="3" fill="#e1ebf0"/><rect x="14" y="50" width="150" height="6" rx="3" fill="#12a4b5"/>
+      <circle cx="262" cy="22" r="5" fill="#2a9d7f"/><text x="250" y="25" font-size="9" fill="#2a9d7f" text-anchor="end">Online</text>
+      <text x="14" y="70" font-size="9" fill="#8a99a6">Position updated moments ago</text></g>
+  </svg>
+  <div class="cap">Live route view &mdash; a truck's journey drawn from its GPS history (illustrative)</div>
+  </div>
+
+  <div class="grid3" style="margin-top:6px">
+    <div class="card"><h3>Fleet &amp; drivers</h3><p>Trucks and drivers belong to the organisation. A truck can only be assigned drivers and trips from its own company.</p></div>
+    <div class="card"><h3>Trips &amp; stops</h3><p>A trip has a truck, a driver and one stop per destination. Status moves Planned → Loading → In transit → Completed.</p></div>
+    <div class="card"><h3>Automatic arrival</h3><p>Each location has a virtual boundary. When the truck leaves or arrives, the system records it &mdash; no manual check-in.</p></div>
+  </div>
+
+  <h2>Always-on tracking from a truck-mounted phone</h2>
+  <p style="font-size:10.5pt">Instead of expensive custom hardware, a company phone is enrolled to <b>one truck</b> by an administrator and stays mounted there. It keeps recording when the driver changes, when the app is closed, and when there is no signal.</p>
+  <ul class="tick">
+    <li><b>Moving</b> &rarr; position every ~15 seconds. <b>Parked</b> &rarr; every ~2 minutes to save battery.</li>
+    <li><b>Idle time and stops</b> are detected automatically and shown in the trip summary.</li>
+    <li><b>Works offline</b> &mdash; everything is stored on the phone first and uploaded when coverage returns.</li>
+  </ul>
+  <div class="foot"><span>LogiCore &middot; Platform overview</span><span>6</span></div>
+</section>
+
+<!-- ============ 6. WMS + TMS ============ -->
+<section class="page">
+  <div class="eyebrow">06 &middot; Better together</div>
+  <h1>How a box travels: warehouse to warehouse</h1>
+  <p class="lead">When a customer has both systems, a warehouse dispatch turns into a truck trip automatically. The same scanned boxes are checked again on arrival, so any loss between the two buildings is detected.</p>
+
+  <div class="fig">
+  <svg viewBox="0 0 700 520" width="100%">
+    <defs><marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#0b2545"/></marker></defs>
+    <!-- lanes -->
+    <rect x="0" y="0" width="700" height="170" rx="10" fill="#e7f5f8"/>
+    <rect x="0" y="176" width="700" height="170" rx="10" fill="#fdf3e3"/>
+    <rect x="0" y="352" width="700" height="168" rx="10" fill="#e9eef7"/>
+    <text x="12" y="20" font-size="10" font-weight="700" fill="#0e7c8a" letter-spacing="1.5">SENDING WAREHOUSE · WMS</text>
+    <text x="12" y="196" font-size="10" font-weight="700" fill="#c27a1c" letter-spacing="1.5">ON THE ROAD · TMS</text>
+    <text x="12" y="372" font-size="10" font-weight="700" fill="#2b4c8c" letter-spacing="1.5">RECEIVING WAREHOUSE · WMS</text>
+
+    <g font-size="10.5" text-anchor="middle" fill="#0b2545">
+      <!-- lane 1 -->
+      <rect x="30" y="40" width="130" height="62" rx="10" fill="#fff" stroke="#12a4b5" stroke-width="1.5"/><text x="95" y="66" font-weight="700">Outbound order</text><text x="95" y="82" fill="#5b6b7b" font-size="9.5">what to send, to where</text>
+      <rect x="215" y="40" width="130" height="62" rx="10" fill="#fff" stroke="#12a4b5" stroke-width="1.5"/><text x="280" y="66" font-weight="700">Release &amp; plan trip</text><text x="280" y="82" fill="#5b6b7b" font-size="9.5">truck + driver assigned</text>
+      <rect x="400" y="40" width="130" height="62" rx="10" fill="#fff" stroke="#12a4b5" stroke-width="1.5"/><text x="465" y="66" font-weight="700">Load by scanning</text><text x="465" y="82" fill="#5b6b7b" font-size="9.5">every box checked</text>
+      <rect x="560" y="40" width="120" height="62" rx="10" fill="#0b2545"/><text x="620" y="66" font-weight="700" fill="#fff">Ready to go</text><text x="620" y="82" fill="#9bb7c7" font-size="9.5">load confirmed</text>
+      <path d="M160 71H215M345 71H400M530 71H560" stroke="#0b2545" stroke-width="1.8" marker-end="url(#a3)"/>
+
+      <!-- lane 2 -->
+      <rect x="560" y="214" width="120" height="62" rx="10" fill="#fff" stroke="#f2a03d" stroke-width="1.5"/><text x="620" y="240" font-weight="700">Truck departs</text><text x="620" y="256" fill="#5b6b7b" font-size="9.5">detected by location</text>
+      <rect x="360" y="214" width="150" height="62" rx="10" fill="#fff" stroke="#f2a03d" stroke-width="1.5"/><text x="435" y="240" font-weight="700">Live tracking</text><text x="435" y="256" fill="#5b6b7b" font-size="9.5">position + temperature</text>
+      <rect x="170" y="214" width="150" height="62" rx="10" fill="#fff" stroke="#f2a03d" stroke-width="1.5"/><text x="245" y="240" font-weight="700">Arrival detected</text><text x="245" y="256" fill="#5b6b7b" font-size="9.5">truck enters the boundary</text>
+      <path d="M620 102V214" stroke="#0b2545" stroke-width="1.8" marker-end="url(#a3)"/>
+      <path d="M560 245H510M360 245H320" stroke="#0b2545" stroke-width="1.8" marker-end="url(#a3)"/>
+
+      <!-- lane 3 -->
+      <rect x="30" y="392" width="140" height="62" rx="10" fill="#fff" stroke="#4c6fb5" stroke-width="1.5"/><text x="100" y="418" font-weight="700">Unload by scanning</text><text x="100" y="434" fill="#5b6b7b" font-size="9.5">each box checked in</text>
+      <rect x="235" y="392" width="150" height="62" rx="10" fill="#fff" stroke="#4c6fb5" stroke-width="1.5"/><text x="310" y="418" font-weight="700">Compare</text><text x="310" y="434" fill="#5b6b7b" font-size="9.5">sent vs received</text>
+      <rect x="450" y="392" width="115" height="62" rx="10" fill="#fff" stroke="#d9534f" stroke-width="1.5"/><text x="507" y="418" font-weight="700" fill="#d9534f">Exception</text><text x="507" y="434" fill="#5b6b7b" font-size="9.5">missing / damaged</text>
+      <rect x="585" y="392" width="95" height="62" rx="10" fill="#2a9d7f"/><text x="632" y="418" font-weight="700" fill="#fff">Delivered</text><text x="632" y="434" fill="#d6f3ea" font-size="9.5">trip complete</text>
+      <path d="M245 276V300H100V392" stroke="#0b2545" stroke-width="1.8" fill="none" marker-end="url(#a3)"/>
+      <path d="M170 423H235M385 423H450M565 423H585" stroke="#0b2545" stroke-width="1.8" marker-end="url(#a3)"/>
+      <text x="418" y="414" font-size="9" fill="#d9534f">mismatch</text>
+      <text x="575" y="414" font-size="9" fill="#2a9d7f" text-anchor="end"></text>
+    </g>
+    <text x="350" y="496" text-anchor="middle" font-size="10" fill="#5b6b7b">Matching boxes confirm the delivery; any difference becomes a recorded exception for a manager</text>
+  </svg>
+  <div class="cap">End-to-end flow &mdash; warehouse, truck, warehouse</div>
+  </div>
+  <div class="grid3" style="margin-top:12px">
+    <div class="card"><h3>No blind spots</h3><p>Goods are scanned at the dock, on the truck and at the destination &mdash; custody is never unknown.</p></div>
+    <div class="card"><h3>No manual hand-over</h3><p>Dispatch in the warehouse creates the trip for the dispatcher; no second data entry.</p></div>
+    <div class="card"><h3>Disputes settled by data</h3><p>"Sent 100, received 98" becomes a recorded exception with the exact missing boxes.</p></div>
+  </div>
+  <div class="foot"><span>LogiCore &middot; Platform overview</span><span>7</span></div>
+</section>
+
+<!-- ============ 7. COLD CHAIN ============ -->
+<section class="page">
+  <div class="eyebrow">07 &middot; Cold-chain monitoring</div>
+  <h1>Proof that it stayed cold</h1>
+  <span class="tag live">Location live</span> <span class="tag plan">Temperature next</span>
+  <p class="lead">Each truck carries a phone that reports position today, and will also read a Bluetooth temperature logger placed in the load. Readings are captured from the start of loading to the end of unloading.</p>
+
+  <div class="fig">
+  <svg viewBox="0 0 700 210" width="100%">
+    <defs><marker id="a4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#0b2545"/></marker></defs>
+    <g font-size="10.5" text-anchor="middle">
+      <rect x="10" y="20" width="110" height="64" rx="10" fill="#fdf3e3" stroke="#f2a03d"/><g transform="translate(46 28)" fill="none" stroke="#c27a1c" stroke-width="2"><path d="M14 20V4a3 3 0 0 0-6 0v16a6 6 0 1 0 6 0z"/></g><text x="65" y="68" font-weight="700" fill="#0b2545">Temp logger</text>
+      <rect x="10" y="112" width="110" height="64" rx="10" fill="#e7f5f8" stroke="#12a4b5"/><g transform="translate(46 120)" fill="none" stroke="#0e7c8a" stroke-width="2"><path d="M12 24s9-8 9-14a9 9 0 0 0-18 0c0 6 9 14 9 14z"/><circle cx="12" cy="10" r="3"/></g><text x="65" y="160" font-weight="700" fill="#0b2545">GPS</text>
+      <path d="M120 52H148L160 80M120 144H148L160 112" stroke="#0b2545" stroke-width="1.8" fill="none" marker-end="url(#a4)"/>
+
+      <rect x="165" y="64" width="120" height="68" rx="12" fill="#0b2545"/><text x="225" y="92" fill="#fff" font-weight="700">Truck phone</text><text x="225" y="108" fill="#9bb7c7" font-size="9.5">saves first, always</text><text x="225" y="121" fill="#9bb7c7" font-size="9.5">works offline</text>
+      <path d="M285 98H325" stroke="#0b2545" stroke-width="1.8" marker-end="url(#a4)"/>
+
+      <rect x="330" y="20" width="130" height="64" rx="10" fill="#fff" stroke="#c9dbe3"/><text x="395" y="48" font-weight="700" fill="#0b2545">Live channel</text><text x="395" y="64" fill="#5b6b7b" font-size="9.5">latest state, seconds old</text>
+      <rect x="330" y="112" width="130" height="64" rx="10" fill="#fff" stroke="#c9dbe3"/><text x="395" y="140" font-weight="700" fill="#0b2545">Journey archive</text><text x="395" y="156" fill="#5b6b7b" font-size="9.5">full history, kept safe</text>
+      <path d="M285 90L325 52M285 106L325 144" stroke="#0b2545" stroke-width="1.8" fill="none" marker-end="url(#a4)"/>
+      <path d="M460 52H500M460 144H500" stroke="#0b2545" stroke-width="1.8" marker-end="url(#a4)"/>
+
+      <rect x="505" y="20" width="185" height="156" rx="12" fill="#e7f5f8" stroke="#12a4b5"/>
+      <text x="597" y="44" font-weight="700" fill="#0b2545">Control room</text>
+      <g font-size="9.5" fill="#34495e" text-anchor="start"><text x="522" y="68">• Live map &amp; truck board</text><text x="522" y="86">• Journey replay</text><text x="522" y="104">• Temperature curve</text><text x="522" y="122">• Breach &amp; delay alerts</text><text x="522" y="140">• Excel / report export</text><text x="522" y="158">• Proof for the customer</text></g>
+    </g>
+  </svg>
+  <div class="cap">From the truck to the control room &mdash; data is never lost if the signal drops</div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <h2 style="margin-top:4px">Two temperature classes</h2>
+      <svg viewBox="0 0 300 120" width="100%">
+        <rect x="0" y="0" width="300" height="120" rx="10" fill="#f3fafc" stroke="#d6e3ea"/>
+        <rect x="14" y="18" width="130" height="84" rx="10" fill="#dff1f7" stroke="#6bbfd4"/>
+        <text x="79" y="48" text-anchor="middle" font-size="22" font-weight="800" fill="#0b2545">2–8 °C</text><text x="79" y="68" text-anchor="middle" font-size="10" fill="#34495e">Chilled</text><text x="79" y="84" text-anchor="middle" font-size="9" fill="#5b6b7b">vaccines · medicines</text>
+        <rect x="156" y="18" width="130" height="84" rx="10" fill="#fbf0dd" stroke="#e3b66d"/>
+        <text x="221" y="48" text-anchor="middle" font-size="22" font-weight="800" fill="#0b2545">10–30 °C</text><text x="221" y="68" text-anchor="middle" font-size="10" fill="#34495e">Controlled ambient</text><text x="221" y="84" text-anchor="middle" font-size="9" fill="#5b6b7b">sensitive goods</text>
+      </svg>
+      <p style="font-size:10pt;margin-top:6px">Chosen per shipment at booking; one range per truck trip, so classes are never mixed.</p>
+    </div>
+    <div>
+      <h2 style="margin-top:4px">Illustrative temperature trace</h2>
+      <svg viewBox="0 0 300 120" width="100%">
+        <rect x="0" y="0" width="300" height="120" rx="10" fill="#fff" stroke="#d6e3ea"/>
+        <rect x="30" y="38" width="255" height="48" fill="#dff1f7" opacity=".8"/>
+        <text x="34" y="34" font-size="8" fill="#0e7c8a">upper limit 8 °C</text><text x="34" y="98" font-size="8" fill="#0e7c8a">lower limit 2 °C</text>
+        <polyline points="30,62 60,58 90,64 120,60 150,52 170,40 185,30 200,28 215,42 235,58 260,62 285,60" fill="none" stroke="#0b2545" stroke-width="2.2"/>
+        <circle cx="192" cy="29" r="5" fill="#d9534f"/>
+        <text x="196" y="18" font-size="8.5" fill="#d9534f" font-weight="700">breach → alert sent</text>
+        <text x="30" y="114" font-size="8" fill="#8a99a6">start of loading</text><text x="285" y="114" font-size="8" fill="#8a99a6" text-anchor="end">end of unloading</text>
+      </svg>
+      <p style="font-size:10pt;margin-top:6px">Time out of range, and how long, is recorded for each trip.</p>
+    </div>
+  </div>
+  <div class="callout"><p><b>Who gets told:</b> if temperature leaves its range, boxes go missing, or an express deadline is at risk, the alert reaches the driver, the sender, the receiver and the hub manager together.</p></div>
+  <div class="foot"><span>LogiCore &middot; Platform overview</span><span>8</span></div>
+</section>
+
+<!-- ============ 8. CNS ============ -->
+<section class="page">
+  <div class="eyebrow">08 &middot; CNS &mdash; Courier Network</div>
+  <h1>A cold-chain courier, hub to hub</h1>
+  <span class="tag plan">Next &middot; pilot targeted Dec 2026</span>
+  <p class="lead">The next system turns the platform into a full courier network. A courier company runs central hubs and trucks; many senders hand over boxes and many receivers get them &mdash; all on one tracked, temperature-controlled chain.</p>
+
+  <div class="fig">
+  <svg viewBox="0 0 700 330" width="100%">
+    <defs><marker id="a5" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#0b2545"/></marker></defs>
+    <!-- sellers -->
+    <g font-size="10" text-anchor="middle">
+      <text x="62" y="18" font-weight="700" fill="#0e7c8a" letter-spacing="1.5">SENDERS</text>
+      <rect x="10" y="30" width="104" height="38" rx="8" fill="#e7f5f8" stroke="#12a4b5"/><text x="62" y="53" fill="#0b2545" font-weight="600">Seller A · WH 1</text>
+      <rect x="10" y="78" width="104" height="38" rx="8" fill="#e7f5f8" stroke="#12a4b5"/><text x="62" y="101" fill="#0b2545" font-weight="600">Seller A · WH 2</text>
+      <rect x="10" y="126" width="104" height="38" rx="8" fill="#e7f5f8" stroke="#12a4b5"/><text x="62" y="149" fill="#0b2545" font-weight="600">Seller B</text>
+      <rect x="10" y="174" width="104" height="38" rx="8" fill="#e7f5f8" stroke="#12a4b5"/><text x="62" y="197" fill="#0b2545" font-weight="600">Seller C</text>
+      <!-- pickup -->
+      <path d="M114 49L190 120M114 97L190 125M114 145L190 135M114 193L190 145" stroke="#12a4b5" stroke-width="1.6" fill="none" marker-end="url(#a5)"/>
+      <text x="150" y="228" fill="#5b6b7b" font-size="9.5">pickup run</text>
+      <g transform="translate(126 232)"><rect width="30" height="16" rx="2" fill="#0b2545"/><path d="M30 4h8l5 6v6H30z" fill="#0b2545"/><circle cx="9" cy="17" r="3" fill="#f2a03d"/><circle cx="35" cy="17" r="3" fill="#f2a03d"/></g>
+
+      <!-- hub 1 -->
+      <g transform="translate(190 100)"><rect width="90" height="70" rx="12" fill="#0b2545"/><text x="45" y="30" fill="#7fdbe8" font-weight="700" font-size="9" letter-spacing="1.5">CENTRAL</text><text x="45" y="48" fill="#fff" font-weight="800" font-size="16">HUB</text><text x="45" y="62" fill="#9bb7c7" font-size="8.5">sorting</text></g>
+
+      <!-- line haul -->
+      <path d="M280 135H420" stroke="#f2a03d" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 0"/>
+      <path d="M416 135l-8-6v12z" fill="#f2a03d"/>
+      <g transform="translate(317 90)"><rect width="40" height="24" rx="3" fill="#0b2545"/><path d="M40 6h11l7 8v10H40z" fill="#0b2545"/><circle cx="12" cy="26" r="4.5" fill="#f2a03d"/><circle cx="48" cy="26" r="4.5" fill="#f2a03d"/></g>
+      <text x="350" y="160" fill="#c27a1c" font-weight="700" font-size="10.5">hub-to-hub truck</text>
+      <text x="350" y="175" fill="#5b6b7b" font-size="9.5">GPS + temperature logged</text>
+
+      <!-- hub 2 -->
+      <g transform="translate(420 100)"><rect width="90" height="70" rx="12" fill="#0b2545"/><text x="45" y="30" fill="#7fdbe8" font-weight="700" font-size="9" letter-spacing="1.5">CENTRAL</text><text x="45" y="48" fill="#fff" font-weight="800" font-size="16">HUB</text><text x="45" y="62" fill="#9bb7c7" font-size="8.5">sorting</text></g>
+
+      <!-- buyers -->
+      <text x="638" y="18" font-weight="700" fill="#0e7c8a" letter-spacing="1.5">RECEIVERS</text>
+      <path d="M510 120L580 49M510 128L580 97M510 138L580 145M510 148L580 193" stroke="#12a4b5" stroke-width="1.6" fill="none" marker-end="url(#a5)"/>
+      <rect x="586" y="30" width="104" height="38" rx="8" fill="#e7f5f8" stroke="#12a4b5"/><text x="638" y="53" fill="#0b2545" font-weight="600">Buyer X · WH 1</text>
+      <rect x="586" y="78" width="104" height="38" rx="8" fill="#e7f5f8" stroke="#12a4b5"/><text x="638" y="101" fill="#0b2545" font-weight="600">Buyer X · WH 2</text>
+      <rect x="586" y="126" width="104" height="38" rx="8" fill="#e7f5f8" stroke="#12a4b5"/><text x="638" y="149" fill="#0b2545" font-weight="600">Buyer Y</text>
+      <rect x="586" y="174" width="104" height="38" rx="8" fill="#e7f5f8" stroke="#12a4b5"/><text x="638" y="197" fill="#0b2545" font-weight="600">Buyer Z</text>
+      <text x="548" y="228" fill="#5b6b7b" font-size="9.5">delivery run</text>
+      <g transform="translate(520 232)"><rect width="30" height="16" rx="2" fill="#0b2545"/><path d="M30 4h8l5 6v6H30z" fill="#0b2545"/><circle cx="9" cy="17" r="3" fill="#f2a03d"/><circle cx="35" cy="17" r="3" fill="#f2a03d"/></g>
+
+      <!-- happy code -->
+      <rect x="130" y="268" width="440" height="50" rx="12" fill="#d9f2ea" stroke="#a9ddcc"/>
+      <text x="350" y="289" font-weight="700" fill="#1b7a60" font-size="11">Delivery is confirmed by a "happy code"</text>
+      <text x="350" y="306" fill="#2c5f50" font-size="9.5">receiver checks boxes → code sent by SMS → handed to driver → delivery complete</text>
+    </g>
+  </svg>
+  <div class="cap">Hub-and-spoke courier network &mdash; many senders, two hubs, many receivers</div>
+  </div>
+
+  <div class="grid2">
+    <ul class="tick">
+      <li><b>Always via two hubs</b> &mdash; consistent handling and one control point at each end.</li>
+      <li><b>Every hand-off scanned</b> &mdash; seller → pickup truck → hub → line-haul → hub → delivery truck → receiver.</li>
+      <li><b>Verified parties</b> &mdash; each seller and buyer is verified in person before they can transact.</li>
+    </ul>
+    <ul class="tick">
+      <li><b>Express &amp; Normal</b> service, with deadlines and priority loading for express.</li>
+      <li><b>Receivers install nothing</b> &mdash; the happy code arrives by SMS.</li>
+      <li><b>Pilot first:</b> hub-to-hub movement goes live first; pickup and delivery follow.</li>
+    </ul>
+  </div>
+  <div class="foot"><span>LogiCore &middot; Platform overview</span><span>9</span></div>
+</section>
+
+<!-- ============ 9. TRUST ============ -->
+<section class="page">
+  <div class="eyebrow">09 &middot; Trust &amp; reliability</div>
+  <h1>Designed to be trusted with real goods</h1>
+  <p class="lead">Logistics software runs in warehouses with weak signal and with people who have little time. LogiCore is built around that reality.</p>
+
+  <div class="grid2" style="margin-top:10px">
+    <div class="card"><span class="tag live">Privacy</span><h3>Each customer is walled off</h3><p>Every record belongs to one organisation. Rules enforced on the server &mdash; not just hidden in the screen &mdash; stop one customer ever seeing another's trucks, stock or people.</p></div>
+    <div class="card"><span class="tag live">Control</span><h3>Sensitive actions go through the server</h3><p>Creating users, moving stock or changing a trip's status is validated centrally, so a modified app cannot bypass the rules.</p></div>
+    <div class="card"><span class="tag live">Traceability</span><h3>Nothing is overwritten</h3><p>Every scan, status change and approval is appended to a permanent history with who, when and where. Users are suspended, never deleted.</p></div>
+    <div class="card"><span class="tag live">Resilience</span><h3>Works without signal</h3><p>Scans and GPS are stored on the device first and replayed safely later &mdash; the same scan can never be counted twice.</p></div>
+  </div>
+
+  <h2>Roles can only do what they should</h2>
+  <div class="fig" style="padding:0;overflow:hidden">
+  <table>
+    <tr><th>Role</th><th>Sees</th><th>Can do</th></tr>
+    <tr><td><b>Organisation admin</b></td><td>Whole organisation</td><td>Set up warehouses, trucks, people; approve requests</td></tr>
+    <tr><td><b>Warehouse manager</b></td><td>Own warehouses &amp; team</td><td>Run operations, resolve exceptions, request team members</td></tr>
+    <tr><td><b>Dispatcher</b></td><td>Trips &amp; fleet</td><td>Plan trips, assign truck and driver</td></tr>
+    <tr><td><b>Warehouse worker</b></td><td>Own assigned tasks</td><td>Scan, put away, load, receive</td></tr>
+    <tr><td><b>Driver</b></td><td>Own trips</td><td>Run trip, confirm stops and deliveries</td></tr>
+  </table>
+  </div>
+
+  <h2>Where the technology stands</h2>
+  <svg viewBox="0 0 700 120" width="100%">
+    <g font-size="10.5" text-anchor="middle">
+      <rect x="0" y="10" width="165" height="96" rx="10" fill="#e7f5f8" stroke="#12a4b5"/><text x="82" y="36" font-weight="700" fill="#0b2545">Web console</text><text x="82" y="54" fill="#5b6b7b" font-size="9.5">browser, any computer</text><text x="82" y="70" fill="#5b6b7b" font-size="9.5">admin &amp; operations</text>
+      <rect x="178" y="10" width="165" height="96" rx="10" fill="#e7f5f8" stroke="#12a4b5"/><text x="260" y="36" font-weight="700" fill="#0b2545">Mobile app</text><text x="260" y="54" fill="#5b6b7b" font-size="9.5">Android &amp; iPhone</text><text x="260" y="70" fill="#5b6b7b" font-size="9.5">workers &amp; drivers</text>
+      <rect x="356" y="10" width="165" height="96" rx="10" fill="#e7f5f8" stroke="#12a4b5"/><text x="438" y="36" font-weight="700" fill="#0b2545">Secure cloud</text><text x="438" y="54" fill="#5b6b7b" font-size="9.5">Google Cloud platform</text><text x="438" y="70" fill="#5b6b7b" font-size="9.5">scales with usage</text>
+      <rect x="534" y="10" width="165" height="96" rx="10" fill="#0b2545"/><text x="616" y="36" font-weight="700" fill="#fff">Live data</text><text x="616" y="54" fill="#9bb7c7" font-size="9.5">real-time positions</text><text x="616" y="70" fill="#9bb7c7" font-size="9.5">history kept for audit</text>
+    </g>
+  </svg>
+  <div class="foot"><span>LogiCore &middot; Platform overview</span><span>10</span></div>
+</section>
+
+<!-- ============ 10. ROADMAP ============ -->
+<section class="page">
+  <div class="eyebrow">10 &middot; Where we are</div>
+  <h1>What exists today and what comes next</h1>
+  <p class="lead">The platform is already working end to end for warehouse operations, trucks and live tracking. The courier network and temperature logging are the next stage.</p>
+
+  <div class="fig" style="padding:2px 10px;margin:6px 0">
+  <svg viewBox="0 0 700 280" width="100%">
+    <line x1="30" y1="140" x2="670" y2="140" stroke="#c9dbe3" stroke-width="4" stroke-linecap="round"/>
+    <line x1="30" y1="140" x2="365" y2="140" stroke="#12a4b5" stroke-width="4" stroke-linecap="round"/>
+    <g font-size="10.5" text-anchor="middle">
+      <circle cx="90" cy="140" r="13" fill="#12a4b5"/><path d="M84 140l4 4 8-9" stroke="#fff" stroke-width="2.5" fill="none"/>
+      <rect x="20" y="40" width="140" height="78" rx="10" fill="#d9f2ea"/><text x="90" y="62" font-weight="700" fill="#1b7a60">FOUNDATION</text>
+      <g fill="#2c5f50" font-size="9.5"><text x="90" y="80">Organisations, users, roles</text><text x="90" y="94">Approvals &amp; audit trail</text><text x="90" y="108">Warehouses &amp; trucks</text></g>
+
+      <circle cx="230" cy="140" r="13" fill="#12a4b5"/><path d="M224 140l4 4 8-9" stroke="#fff" stroke-width="2.5" fill="none"/>
+      <rect x="160" y="162" width="140" height="92" rx="10" fill="#d9f2ea"/><text x="230" y="184" font-weight="700" fill="#1b7a60">OPERATIONS</text>
+      <g fill="#2c5f50" font-size="9.5"><text x="230" y="202">Warehouse scanning (WMS)</text><text x="230" y="216">Trips &amp; drivers (TMS)</text><text x="230" y="230">Warehouse ⇄ truck flow</text><text x="230" y="244">Box enquiry &amp; exceptions</text></g>
+
+      <circle cx="365" cy="140" r="13" fill="#12a4b5"/><path d="M359 140l4 4 8-9" stroke="#fff" stroke-width="2.5" fill="none"/>
+      <rect x="298" y="40" width="134" height="78" rx="10" fill="#d9f2ea"/><text x="365" y="62" font-weight="700" fill="#1b7a60">LIVE TRACKING</text>
+      <g fill="#2c5f50" font-size="9.5"><text x="365" y="80">Truck-phone GPS</text><text x="365" y="94">Offline-safe uploads</text><text x="365" y="108">Route view on map</text></g>
+
+      <circle cx="500" cy="140" r="13" fill="#fff" stroke="#f2a03d" stroke-width="3"/>
+      <rect x="432" y="162" width="136" height="92" rx="10" fill="#fdecd2"/><text x="500" y="184" font-weight="700" fill="#a8660f">STAGE 1 · PILOT</text>
+      <g fill="#7a4b0a" font-size="9.5"><text x="500" y="202">Temperature logger</text><text x="500" y="216">Hub-to-hub movement</text><text x="500" y="230">Temperature alerts</text><text x="500" y="244">Target: mid-Dec 2026</text></g>
+
+      <circle cx="630" cy="140" r="13" fill="#fff" stroke="#f2a03d" stroke-width="3" stroke-dasharray="4 3"/>
+      <rect x="565" y="40" width="130" height="78" rx="10" fill="#fdecd2"/><text x="630" y="62" font-weight="700" fill="#a8660f">STAGE 2 · NETWORK</text>
+      <g fill="#7a4b0a" font-size="9.5"><text x="630" y="80">Seller &amp; buyer onboarding</text><text x="630" y="94">Booking, pickup, delivery</text><text x="630" y="108">Happy-code confirmation</text></g>
+    </g>
+  </svg>
+  <div class="cap">Delivery path &mdash; green is working today, amber is the next build</div>
+  </div>
+
+  <h2 style="margin-top:8px">Capability summary</h2>
+  <div class="fig" style="padding:0;overflow:hidden">
+  <table>
+    <tr><th style="width:34%">Capability</th><th style="width:18%">Status</th><th>What it gives the customer</th></tr>
+    <tr><td><b>Organisations, users, approvals</b></td><td><span class="tag live" style="margin:0">Working</span></td><td>Secure multi-company setup with controlled onboarding</td></tr>
+    <tr><td><b>Warehouse system (WMS)</b></td><td><span class="tag live" style="margin:0">Working</span></td><td>Scan-based inbound, putaway, pallets, staging, outbound</td></tr>
+    <tr><td><b>Transport system (TMS)</b></td><td><span class="tag live" style="margin:0">Working</span></td><td>Fleet, drivers, trips, stops, automatic arrival</td></tr>
+    <tr><td><b>Truck GPS tracking</b></td><td><span class="tag live" style="margin:0">Working</span></td><td>Always-on location, idle detection, route replay</td></tr>
+    <tr><td><b>Orders &amp; finance (OMS, ERP)</b></td><td><span class="tag ready" style="margin:0">Built, held</span></td><td>Order approval, pricing and invoicing &mdash; ready to switch on when needed</td></tr>
+    <tr><td><b>Temperature monitoring</b></td><td><span class="tag plan" style="margin:0">Next</span></td><td>Bluetooth logger readings, range checks, breach alerts</td></tr>
+    <tr><td><b>Courier network (CNS)</b></td><td><span class="tag plan" style="margin:0">Next</span></td><td>Hubs, pickup, delivery, express, happy-code confirmation</td></tr>
+  </table>
+  </div>
+
+  <div class="callout" style="margin-top:8px;padding:10px 14px"><p><b>In short:</b> LogiCore is one platform that already runs warehouses, trucks and live tracking, and is extending into a full temperature-controlled courier network &mdash; with every box, truck and temperature on the record.</p></div>
+  <div class="foot"><span>LogiCore &middot; Platform overview &middot; Confidential</span><span>11</span></div>
+</section>
+
+</body>
+</html>

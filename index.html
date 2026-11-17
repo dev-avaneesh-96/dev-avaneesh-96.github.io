@@ -65,8 +65,8 @@
   }
 
   header{
-    display:flex;justify-content:space-between;align-items:flex-start;
-    gap:20px;flex-wrap:wrap;
+    display:flex;justify-content:space-between;align-items:center;
+    gap:20px;
     padding-bottom:20px;border-bottom:2px solid var(--ink);
   }
   .id .eyebrow{
@@ -79,6 +79,16 @@
   }
   .role{margin:10px 0 0;font-size:16px;font-weight:500;color:var(--ink-2)}
   .role b{color:var(--ink);font-weight:600}
+
+  .avatar-wrap{flex-shrink:0}
+  .avatar{
+    width:76px;height:96px;
+    object-fit:cover;object-position:center top;
+    border-radius:8px;
+    border:2px solid var(--line);
+    box-shadow:0 4px 14px -4px rgba(20,32,46,.18);
+    display:block;
+  }
 
   .contact{
     display:flex;flex-wrap:wrap;gap:6px 0;margin-top:16px;
@@ -198,6 +208,9 @@
     <div class="id">
       <h1>Avaneesh Kumar Singh</h1>
       <p class="role"><b>Native &amp; Cross-Platform Mobile App Developer</b> · 10+ Years Exp.</p>
+    </div>
+    <div class="avatar-wrap">
+      <img src="avatar.png" alt="Avaneesh Kumar Singh" class="avatar">
     </div>
   </header>
 

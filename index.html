@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="Avaneesh Kumar Singh — Native &amp; Cross-Platform Mobile App Developer with 10 years experience in React Native, iOS (Swift/Objective-C), Flutter, BLE/NFC hardware integrations, and secure enterprise apps."><title>Avaneesh Singh — Mobile App Developer CV</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E7A73'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"><style>
+  :root{
+    --page:#EDF0F4;
+    --paper:#FFFFFF;
+    --ink:#14202E;
+    --ink-2:#48566A;
+    --ink-3:#6E7C8C;
+    --line:#E4E9EF;
+    --line-2:#EEF2F6;
+    --accent:#0E7A73;
+    --accent-ink:#0B5F59;
+    --accent-wash:#E6F2F1;
+    --chip:#F2F5F8;
+    --chip-ink:#37485C;
+    --shadow:0 1px 2px rgba(20,32,46,.05), 0 22px 48px -20px rgba(20,32,46,.28);
+    --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --page:#0B1015;--paper:#141C25;--ink:#E8EDF3;--ink-2:#AAB5C1;--ink-3:#7C8895;
+      --line:#26313C;--line-2:#1B232C;--accent:#48C4BA;--accent-ink:#6FD6CC;
+      --accent-wash:#123230;--chip:#1B2530;--chip-ink:#C4CED9;
+      --shadow:0 1px 2px rgba(0,0,0,.5), 0 26px 52px -22px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --page:#0B1015;--paper:#141C25;--ink:#E8EDF3;--ink-2:#AAB5C1;--ink-3:#7C8895;
+    --line:#26313C;--line-2:#1B232C;--accent:#48C4BA;--accent-ink:#6FD6CC;
+    --accent-wash:#123230;--chip:#1B2530;--chip-ink:#C4CED9;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 26px 52px -22px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--page);color:var(--ink);
+    font-family:var(--sans);line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    padding:40px 20px;
+  }
+
+  .actions{position:fixed;top:18px;right:18px;z-index:20;display:flex;gap:10px}
+  .actions a, .actions button{
+    font-family:var(--mono);font-size:12px;letter-spacing:.02em;
+    color:#fff;background:var(--accent);border:none;
+    padding:9px 15px;border-radius:999px;cursor:pointer;text-decoration:none;
+    box-shadow:0 6px 18px -6px rgba(14,122,115,.7);
+    transition:transform .15s ease, background .15s ease;
+    display:inline-flex;align-items:center;
+  }
+  .actions a.secondary{
+    background:var(--paper);color:var(--accent-ink);
+    border:1px solid var(--accent);
+    box-shadow:0 4px 12px -4px rgba(20,32,46,.15);
+  }
+  .actions a:hover, .actions button:hover{background:var(--accent-ink);color:#fff;transform:translateY(-1px)}
+  .actions button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  .sheet{
+    max-width:920px;margin:0 auto;background:var(--paper);
+    border-radius:6px;box-shadow:var(--shadow);
+    padding:46px 52px 50px;
+    border:1px solid var(--line-2);
+  }
+
+  header{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    gap:20px;flex-wrap:wrap;
+    padding-bottom:20px;border-bottom:2px solid var(--ink);
+  }
+  .id .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 6px;
+  }
+  h1{
+    margin:0;font-size:40px;line-height:1.05;font-weight:700;
+    letter-spacing:-.022em;color:var(--ink);
+  }
+  .role{margin:10px 0 0;font-size:16px;font-weight:500;color:var(--ink-2)}
+  .role b{color:var(--ink);font-weight:600}
+
+  .contact{
+    display:flex;flex-wrap:wrap;gap:6px 0;margin-top:16px;
+    font-family:var(--mono);font-size:12.5px;color:var(--ink-3);
+  }
+  .contact a{color:var(--ink-2);text-decoration:none}
+  .contact a:hover{color:var(--accent-ink)}
+  .contact span:not(:last-child)::after{content:"·";margin:0 12px;color:var(--line)}
+
+  .grid{display:grid;grid-template-columns:1.62fr 1fr;gap:38px;margin-top:28px}
+  section{margin-bottom:26px}
+  section:last-child{margin-bottom:0}
+  .kicker{display:flex;align-items:center;gap:13px;margin:0 0 14px}
+  .kicker span{
+    font-family:var(--mono);font-size:11px;font-weight:600;
+    letter-spacing:.15em;text-transform:uppercase;color:var(--accent);white-space:nowrap;
+  }
+  .kicker::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  .lede{font-size:14px;color:var(--ink-2);margin:0;line-height:1.6}
+  .lede b{color:var(--ink);font-weight:600}
+
+  /* What I Build */
+  .cap{display:flex;flex-direction:column;gap:14px}
+  .cap-row{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:start}
+  .cap-label{
+    font-family:var(--mono);font-size:12px;font-weight:600;
+    letter-spacing:.02em;color:var(--ink);padding-top:1px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .cap-label::before{content:"";width:6px;height:6px;border-radius:1.5px;background:var(--accent);flex:none}
+  .cap-row ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4.5px}
+  .cap-row li{position:relative;padding-left:15px;font-size:13px;color:var(--ink-2);line-height:1.45}
+  .cap-row li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:1.5px;background:var(--accent)}
+  .cap-row li b{color:var(--ink);font-weight:600}
+
+  /* Experience section */
+  .exp-full{display:flex;flex-direction:column;gap:20px}
+  .exp-job{padding-left:14px;border-left:2px solid var(--line);transition:border-color .15s ease}
+  .exp-job:hover{border-left-color:var(--accent)}
+  .exp-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
+  .exp-company{font-size:14.5px;font-weight:700;color:var(--ink);margin:0}
+  .exp-period{font-family:var(--mono);font-size:11px;color:var(--accent-ink);font-weight:500;white-space:nowrap}
+  .exp-sub{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 0 7px;font-size:13px;color:var(--ink-2)}
+  .exp-role-title{font-weight:600;color:var(--accent-ink)}
+  .exp-client{font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+  .exp-job ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px}
+  .exp-job li{position:relative;padding-left:15px;font-size:12.8px;color:var(--ink-2);line-height:1.48}
+  .exp-job li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:1.5px;background:var(--accent)}
+  .exp-job li b{color:var(--ink);font-weight:600}
+
+  /* Aside / Stack & info */
+  aside .kicker span{color:var(--accent)}
+  .stack-group{margin-bottom:14px}
+  .stack-group:last-child{margin-bottom:0}
+  .stack-cat{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-3);margin:0 0 6px;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:5px}
+  .chip{
+    font-size:11px;font-weight:500;color:var(--chip-ink);
+    background:var(--chip);border:1px solid var(--line);
+    padding:3px 8px;border-radius:4px;line-height:1.4;
+  }
+  .chip.highlight{
+    background:var(--accent-wash);color:var(--accent-ink);
+    border-color:color-mix(in srgb,var(--accent) 30%,transparent);
+    font-weight:600;
+  }
+
+  .list{display:flex;flex-direction:column;gap:10px}
+  .list-item{display:flex;flex-direction:column;gap:2px}
+  .li-primary{font-size:13px;font-weight:600;color:var(--ink);line-height:1.35}
+  .li-secondary{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+
+  .version-tag{
+    margin-top:20px;padding-top:16px;border-top:1px dashed var(--line);
+    font-family:var(--mono);font-size:11px;color:var(--ink-3);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .version-tag a{color:var(--accent);text-decoration:none}
+  .version-tag a:hover{text-decoration:underline}
+
+  @media (max-width:768px){
+    body{padding:16px 10px}
+    .sheet{padding:28px 20px 32px}
+    h1{font-size:32px}
+    .grid{grid-template-columns:1fr;gap:24px}
+    .cap-row{grid-template-columns:1fr;gap:5px}
+    .cap-label{padding-top:0}
+  }
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+  @media print{
+    :root{
+      --page:#fff;--paper:#fff;--ink:#14202E;--ink-2:#3f4d61;--ink-3:#6E7C8C;
+      --line:#D9E0E7;--line-2:#E9EDF2;--accent:#0E7A73;--accent-ink:#0B5F59;
+      --accent-wash:#E6F2F1;--chip:#F2F5F8;--chip-ink:#37485C;
+    }
+    html,body{background:#fff}
+    body{padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .actions, .version-tag{display:none!important}
+    .sheet{max-width:none;margin:0;border:none;border-radius:0;box-shadow:none;padding:0}
+    .exp-job,.cap,.list,section{break-inside:avoid}
+    @page{size:A4;margin:11mm}
+  }
+</style></head><body>
+
+<div class="actions">
+  <a href="v1.html" class="secondary">View Previous Version (v1)</a>
+  <button onclick="window.print()">Save as PDF</button>
+</div>
+
+<main class="sheet">
+  <header>
+    <div class="id">
+      <div class="eyebrow">Curriculum Vitae</div>
+      <h1>Avaneesh Kumar Singh</h1>
+      <p class="role"><b>Native &amp; Cross-Platform Mobile App Developer</b> · 10 Years Exp.</p>
+    </div>
+  </header>
+
+  <div class="contact">
+    <span><a href="mailto:singh.avaneesh96@gmail.com">singh.avaneesh96@gmail.com</a></span>
+    <span><a href="tel:+917827726845">+917827726845</a></span>
+    <span>New Delhi, India</span>
+    <span><a href="https://dev-avaneesh-96.github.io">dev-avaneesh-96.github.io</a></span>
+  </div>
+
+  <div class="grid">
+    <div class="main">
+      <!-- Summary -->
+      <section>
+        <p class="lede">Mobile Application Developer with <b>10 years of experience</b> architecting, developing, and scaling robust applications across native (iOS) and cross-platform (React Native) ecosystems. Proven track record in end-to-end system design, Bluetooth (BLE) hardware connectivity, NFC, barcode/QR scanning, Single Sign-On (SSO), and store publishing. Adept at driving clean architecture, continuous performance optimization, and seamless stakeholder collaboration.</p>
+      </section>
+
+      <!-- What I Build -->
+      <section>
+        <div class="kicker"><span>What I build</span></div>
+        <div class="cap">
+          <div class="cap-row">
+            <div class="cap-label">Cross-Platform</div>
+            <ul>
+              <li>High-performance mobile applications in <b>React Native</b> &amp; <b>Flutter</b> for Android &amp; iOS</li>
+              <li>Modular architecture, state management (Redux), offline-first data sync &amp; deep linking</li>
+            </ul>
+          </div>
+          <div class="cap-row">
+            <div class="cap-label">Native iOS</div>
+            <ul>
+              <li>Native apps in <b>Swift</b> &amp; <b>Objective-C</b> utilizing iOS SDKs, UIKit, and modern patterns</li>
+              <li>Smooth 60fps animations, memory/performance profiling, and responsive UI engineering</li>
+            </ul>
+          </div>
+          <div class="cap-row">
+            <div class="cap-label">Hardware &amp; IoT</div>
+            <ul>
+              <li><b>BLE device integration</b> &amp; intelligent Bluetooth portable printer discovery for field operations</li>
+              <li>High-speed <b>smart scanning modules</b> for Barcode, QR code recognition &amp; <b>NFC</b></li>
+            </ul>
+          </div>
+          <div class="cap-row">
+            <div class="cap-label">Enterprise &amp; Auth</div>
+            <ul>
+              <li>Secure <b>Single Sign-On (SSO)</b> solution enabling unified multi-app authentication</li>
+              <li>Robust application-layer RESTful APIs &amp; JSON web services integration</li>
+            </ul>
+          </div>
+          <div class="cap-row">
+            <div class="cap-label">E-Commerce &amp; UX</div>
+            <ul>
+              <li>Comprehensive <b>order management</b>, real-time order tracking &amp; push notification systems</li>
+              <li>Intelligent <b>haptic support bot</b>, cashback, and loyalty coupon engines</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI-assisted workflow (Preserved) -->
+      <section>
+        <div class="kicker"><span>AI-assisted workflow</span></div>
+        <p class="lede" style="margin:0 0 12px">An AI-assisted, MCP-driven workflow — pairing agentic coding tools with Model Context Protocol servers to design, build, and ship production features faster.</p>
+        <div class="cap">
+          <div class="cap-row">
+            <div class="cap-label">AI coding</div>
+            <ul><li><b>Claude Code</b>, Cursor, OpenAI Codex, GitHub Copilot &amp; Gemini</li></ul>
+          </div>
+          <div class="cap-row">
+            <div class="cap-label">MCP &amp; plugins</div>
+            <ul><li>Figma (design-to-code), <b>Firebase</b>, GitHub, Supabase, Playwright &amp; Sentry</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section>
+        <div class="kicker"><span>Experience</span></div>
+        <div class="exp-full">
+          <!-- TCS -->
+          <div class="exp-job">
+            <div class="exp-header">
+              <h3 class="exp-company">Tata Consultancy Services</h3>
+              <span class="exp-period">April 2022 — Present</span>
+            </div>
+            <div class="exp-sub">
+              <span class="exp-role-title">React Native Developer</span>
+              <span>·</span>
+              <span class="exp-client">Client: Iron Mountain Information Management, LLC · New Delhi, India</span>
+            </div>
+            <ul>
+              <li>Architected and developed enterprise cross-platform mobile apps in <b>React Native</b>, delivering unified, high-performance experiences across Android &amp; iOS.</li>
+              <li>Designed and implemented secure <b>Single Sign-On (SSO)</b>, enabling field operators to seamlessly access multiple corporate apps under unified authentication.</li>
+              <li>Developed intelligent <b>Bluetooth (BLE) printer discovery</b>, allowing users to discover and link portable printers in the field, dramatically increasing operational efficiency.</li>
+              <li>Engineered a high-performance <b>smart scanning module</b> for barcode and QR code recognition, significantly boosting data capture speed and precision.</li>
+              <li>Built responsive, user-centric interfaces using React, React Native, JavaScript, and Sketch, prioritizing accessibility and modern UX standards.</li>
+              <li>Implemented secure application-layer networking for RESTful APIs and web services using JSON.</li>
+              <li>Drove Agile/Scrum ceremonies, feature estimations, sprint deliverables, and comprehensive peer code reviews.</li>
+              <li>Continuously optimized application speed, reduced bundle sizes, and resolved critical production bottlenecks.</li>
+            </ul>
+          </div>
+
+          <!-- Dew Solutions -->
+          <div class="exp-job">
+            <div class="exp-header">
+              <h3 class="exp-company">Dew Solutions Pvt Ltd</h3>
+              <span class="exp-period">January 2020 — April 2022</span>
+            </div>
+            <div class="exp-sub">
+              <span class="exp-role-title">iOS Developer</span>
+              <span>·</span>
+              <span class="exp-client">Gurugram, India</span>
+            </div>
+            <ul>
+              <li>Engineered an end-to-end <b>order management system</b> with real-time order tracking to streamline the consumer purchase lifecycle.</li>
+              <li>Integrated an intelligent <b>haptic chat bot</b> for customer care support, significantly improving response times and user engagement.</li>
+              <li>Developed in-app request creation, status tracking, and automated push notifications for customer inquiries and updates.</li>
+              <li>Designed and implemented dynamic <b>cashback and coupon modules</b> to drive transactions and repeat customer loyalty.</li>
+            </ul>
+          </div>
+
+          <!-- Pepal -->
+          <div class="exp-job">
+            <div class="exp-header">
+              <h3 class="exp-company">Pepal Private Limited</h3>
+              <span class="exp-period">May 2018 — November 2019</span>
+            </div>
+            <div class="exp-sub">
+              <span class="exp-role-title">iOS Developer</span>
+              <span>·</span>
+              <span class="exp-client">New Delhi, India</span>
+            </div>
+            <ul>
+              <li>Developed native iOS applications from ground up utilizing <b>Swift</b> and <b>Objective-C</b>.</li>
+              <li>Integrated third-party SDKs, payment gateways, RESTful web services, and analytics libraries.</li>
+              <li>Optimized app responsiveness, memory allocations, and lifecycle handling for smooth performance.</li>
+              <li>Managed <b>App Store releases</b>, provisioning profiles, distribution certificates, and GitHub workflows.</li>
+            </ul>
+          </div>
+
+          <!-- Shine Web Solutions -->
+          <div class="exp-job">
+            <div class="exp-header">
+              <h3 class="exp-company">Shine Web Solutions Pvt Ltd</h3>
+              <span class="exp-period">October 2015 — December 2017</span>
+            </div>
+            <div class="exp-sub">
+              <span class="exp-role-title">iOS Developer</span>
+              <span>·</span>
+              <span class="exp-client">Noida, India</span>
+            </div>
+            <ul>
+              <li>Built iOS applications using Swift and Objective-C with customized UI components and transitions.</li>
+              <li>Integrated third-party APIs and libraries into client-facing applications.</li>
+              <li>Diagnosed, troubleshooted, and resolved defects and stability issues across various iOS versions.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Aside / Stack & Details -->
+    <aside>
+      <!-- Skills / Stack -->
+      <section>
+        <div class="kicker"><span>Skills &amp; Tech Stack</span></div>
+        <div class="stack-group">
+          <p class="stack-cat">Mobile &amp; Frameworks</p>
+          <div class="chips">
+            <span class="chip highlight">React Native</span>
+            <span class="chip highlight">iOS (Swift / Obj-C)</span>
+            <span class="chip">Flutter</span>
+            <span class="chip">React</span>
+            <span class="chip">Android Studio</span>
+            <span class="chip">Xcode</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <p class="stack-cat">Languages</p>
+          <div class="chips">
+            <span class="chip">JavaScript</span>
+            <span class="chip">TypeScript</span>
+            <span class="chip">Swift</span>
+            <span class="chip">Objective-C</span>
+            <span class="chip">C</span>
+            <span class="chip">Python</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <p class="stack-cat">Hardware, BLE &amp; Integrations</p>
+          <div class="chips">
+            <span class="chip highlight">BLE Device Integration</span>
+            <span class="chip highlight">BT Printer Discovery</span>
+            <span class="chip highlight">Barcode &amp; QR Scan</span>
+            <span class="chip">NFC</span>
+            <span class="chip">Push Notifications</span>
+            <span class="chip">Maps &amp; Location</span>
+            <span class="chip">Payment Gateways</span>
+            <span class="chip">Social Login</span>
+            <span class="chip">Analytics</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <p class="stack-cat">Architecture &amp; Tooling</p>
+          <div class="chips">
+            <span class="chip">RESTful APIs</span>
+            <span class="chip">SSO (OAuth / SAML)</span>
+            <span class="chip">Git / GitHub / GitLab</span>
+            <span class="chip">App Store Publishing</span>
+            <span class="chip">Play Store Publishing</span>
+            <span class="chip">VS Code</span>
+            <span class="chip">Sketch</span>
+            <span class="chip">Figma</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Awards -->
+      <section>
+        <div class="kicker"><span>Awards &amp; Recognition</span></div>
+        <div class="list">
+          <div class="list-item">
+            <div class="li-primary">On the Spot (Team) Award</div>
+            <div class="li-secondary">Tata Consultancy Services</div>
+          </div>
+          <div class="list-item">
+            <div class="li-primary">Special Initiative Award</div>
+            <div class="li-secondary">Tata Consultancy Services</div>
+          </div>
+          <div class="list-item">
+            <div class="li-primary">tcs^AI Idea Igniter &amp; Spark</div>
+            <div class="li-secondary">Innovation in AI Engineering</div>
+          </div>
+          <div class="list-item">
+            <div class="li-primary">Contextual Master Award</div>
+            <div class="li-secondary">Domain &amp; Technical Mastery</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications -->
+      <section>
+        <div class="kicker"><span>Certifications</span></div>
+        <div class="list">
+          <div class="list-item">
+            <div class="li-primary">Software Product Engineering</div>
+            <div class="li-secondary">BDA</div>
+          </div>
+          <div class="list-item">
+            <div class="li-primary">Android Architect Program</div>
+            <div class="li-secondary">Advanced Curriculum</div>
+          </div>
+          <div class="list-item">
+            <div class="li-primary">React Developer Certification</div>
+            <div class="li-secondary">VSkills</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section>
+        <div class="kicker"><span>Education</span></div>
+        <div class="list">
+          <div class="list-item">
+            <div class="li-primary">B.Tech — Electronics &amp; Communication</div>
+            <div class="li-secondary">Uttar Pradesh Technical University, Lucknow, India · June 2012</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="version-tag">
+        <span>CV Version: 2.0 (Mobile Developer)</span>
+        <a href="v1.html">View v1 &rarr;</a>
+      </div>
+    </aside>
+  </div>
+</main>
+
+</body></html>

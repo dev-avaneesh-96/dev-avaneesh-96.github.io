@@ -165,13 +165,21 @@
   .li-primary{font-size:13px;font-weight:600;color:var(--ink);line-height:1.35}
   .li-secondary{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
 
-  .version-tag{
-    margin-top:20px;padding-top:16px;border-top:1px dashed var(--line);
-    font-family:var(--mono);font-size:11px;color:var(--ink-3);
-    display:flex;justify-content:space-between;align-items:center;
+  .qr-section{margin-top:22px}
+  .qr-card{
+    display:flex;align-items:center;gap:12px;
+    background:var(--chip);border:1px solid var(--line);
+    padding:10px 12px;border-radius:8px;
+    text-decoration:none;transition:border-color .15s ease, transform .15s ease;
   }
-  .version-tag a{color:var(--accent);text-decoration:none}
-  .version-tag a:hover{text-decoration:underline}
+  .qr-card:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .qr-code{
+    width:68px;height:68px;border-radius:4px;
+    display:block;flex-shrink:0;background:#fff;
+  }
+  .qr-info{display:flex;flex-direction:column;gap:2px}
+  .qr-title{margin:0;font-size:12px;font-weight:600;color:var(--ink)}
+  .qr-desc{margin:0;font-family:var(--mono);font-size:10.5px;color:var(--accent-ink);word-break:break-all}
 
   @media (max-width:768px){
     body{padding:16px 10px}
@@ -479,6 +487,18 @@
             <div class="li-secondary">Uttar Pradesh Technical University, Lucknow, India · June 2012</div>
           </div>
         </div>
+      </section>
+
+      <!-- LinkedIn QR Code -->
+      <section class="qr-section">
+        <div class="kicker"><span>Connect</span></div>
+        <a href="https://www.linkedin.com/in/dev-avaneesh" target="_blank" rel="noopener" class="qr-card" title="Scan or click to open LinkedIn profile">
+          <img src="linkedin-qr.svg" alt="LinkedIn QR Code" class="qr-code">
+          <div class="qr-info">
+            <p class="qr-title">Scan to Connect</p>
+            <p class="qr-desc">linkedin.com/in/dev-avaneesh</p>
+          </div>
+        </a>
       </section>
 
     </aside>

@@ -192,18 +192,21 @@
 
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
+  @page{size:A4;margin:0}
   @media print{
     :root{
       --page:#fff;--paper:#fff;--ink:#14202E;--ink-2:#3f4d61;--ink-3:#6E7C8C;
       --line:#D9E0E7;--line-2:#E9EDF2;--accent:#0E7A73;--accent-ink:#0B5F59;
       --accent-wash:#E6F2F1;--chip:#F2F5F8;--chip-ink:#37485C;
     }
-    html,body{background:#fff}
+    html,body{background:#fff;margin:0;padding:0}
     body{padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
     .actions, .version-tag{display:none!important}
-    .sheet{max-width:none;margin:0;border:none;border-radius:0;box-shadow:none;padding:0}
-    .exp-job,.cap,.list,section{break-inside:avoid}
-    @page{size:A4;margin:11mm}
+    .sheet{
+      max-width:none;margin:0;border:none;border-radius:0;box-shadow:none;
+      padding:12mm 14mm;
+    }
+    .exp-job,.cap,.list,section,.qr-card{break-inside:avoid}
   }
 </style></head><body>
 

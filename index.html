@@ -192,7 +192,7 @@
 
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
-  @page{size:A4;margin:0}
+  @page{size:A4;margin:14mm 14mm}
   @media print{
     :root{
       --page:#fff;--paper:#fff;--ink:#14202E;--ink-2:#3f4d61;--ink-3:#6E7C8C;
@@ -203,8 +203,8 @@
     body{padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
     .actions, .version-tag{display:none!important}
     .sheet{
-      max-width:none;margin:0;border:none;border-radius:0;box-shadow:none;
-      padding:12mm 14mm;
+      max-width:none;margin:0!important;border:none!important;border-radius:0!important;box-shadow:none!important;
+      padding:0!important;
     }
     .exp-job,.cap,.list,section,.qr-card{break-inside:avoid}
   }
